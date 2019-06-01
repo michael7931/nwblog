@@ -1,0 +1,193 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>mic11-测试文章 | Gridea</title>
+<link rel="shortcut icon" href="/Users/michael/Documents/Gridea/output/favicon.ico?v=1559395043439">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="/Users/michael/Documents/Gridea/output/styles/main.css">
+
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+
+
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="/Users/michael/Documents/Gridea/output">
+  <img class="avatar" src="/Users/michael/Documents/Gridea/output/images/avatar.png?v=1559395043439" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/Users/michael/Documents/Gridea/output//index.html" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/Users/michael/Documents/Gridea/output/archives/index.html" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/Users/michael/Documents/Gridea/output/tags/index.html" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/Users/michael/Documents/Gridea/output/post/about/index.html" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+      
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              测试文章
+            </h2>
+            <div class="post-info">
+              <time class="post-time">
+                · 2019-06-01 ·
+              </time>
+              
+            </div>
+            
+            <div class="post-content">
+              <p>点击上面 蓝色字体关注我们
+技术 / 架构 /  职场 / 面试  / 内推</p>
+<p>如何既保证数据的一致性，同时又不影响系统运行的性能，是每一个分布式系统都需要重点考虑和权衡的。于是，一致性级别由此诞生：</p>
+<p>1、强一致性</p>
+<p>这种一致性级别是最符合用户直觉的，它要求系统写入什么，读出来的也会是什么，用户体验好，但实现起来往往对系统的性能影响大</p>
+<p>2、弱一致性</p>
+<p>这种一致性级别约束了系统在写入成功后，不承诺立即可以读到写入的值，也不久承诺多久之后数据能够达到一致，但会尽可能地保证到某个时间级别（比如秒级别）后，数据能够达到一致状态</p>
+<p>3、最终一致性</p>
+<p>最终一致性是弱一致性的一个特例，系统会保证在一定时间内，能够达到一个数据一致的状态。这里之所以将最终一致性单独提出来，是因为它是弱一致性中非常推崇的一种一致性模型，也是业界在大型分布式系统的数据一致性上比较推崇的模型</p>
+<p>什么是 CAP 定理
+2000 年的时候，Eric Brewer 教授提出了 CAP 猜想，2年后，被 Seth Gilbert 和 Nancy Lynch 从理论上证明了猜想的可能性，从此，CAP 理论正式在学术上成为了分布式计算领域的公认定理。并深深的影响了分布式计算的发展。</p>
+<p>CAP 理论告诉我们，一个分布式系统不可能同时满足一致性（C:Consistency)，可用性（A: Availability）和分区容错性（P：Partition tolerance）这三个基本需求，最多只能同时满足其中的2个。</p>
+<p>C（Consistence）一致性 指数据在多个副本之间能够保持一致的特性（严格的一致性）</p>
+<p>A（Availability）可用性 指系统提供的服务必须一直处于可用的状态，每次请求都能获取到非错的响应——但是不保证获取的数据为最新数据</p>
+<p>P（Network partitioning）分区容错性分布式系统在遇到任何网络分区故障的时候，仍然能够对外提供满足一致性和可用性的服务，除非整个网络环境都发生了故障</p>
+<p>什么是分区？</p>
+<p>在分布式系统中，不同的节点分布在不同的子网络中，由于一些特殊的原因，这些子节点之间出现了网络不通的状态，但他们的内部子网络是正常的。从而导致了整个系统的环境被切分成了若干个孤立的区域。这就是分区。</p>
+<p>1、为什么只能 3 选 2
+为什么只能 3 选 2？</p>
+<p>首先问，能不能同时满足这三个条件？</p>
+<p>假设有一个系统如下：</p>
+<p>整个系统由两个节点配合组成，之间通过网络通信，当节点 A 进行更新数据库操作的时候，需要同时更新节点 B 的数据库（这是一个原子的操作）。</p>
+<p>上面这个系统怎么满足 CAP 呢？</p>
+<p>C：当节点A更新的时候，节点B也要更新</p>
+<p>A：必须保证两个节点都是可用的</p>
+<p>P：当节点 A,B 出现了网络分区，必须保证对外可用。</p>
+<p>可见，根本完成不了，只要出现了网络分区，A 就无法满足，因为节点 A 根本连接不上节点 B。如果强行满足 C 原子性，就必须停止服务运行，从而放弃可用性 C。</p>
+<p>所以，最多满足两个条件：</p>
+<p>CA，一致性，可用性 满足原子和可用，放弃分区容错。说白了，就是一个整体的应用</p>
+<p>CP，一致性，分区容错性 满足原子和分区容错，也就是说，要放弃可用。当系统被分区，为了保证原子性，必须放弃可用性，让服务停用</p>
+<p>AP，可用性，分区容错性  满足可用性和分区容错，当出现分区，同时为了保证可用性，必须让节点继续对外服务，这样必然导致失去原子性</p>
+<p>2、能不能解决 3 选 2 的问题
+难道真的没有办法解决这个问题吗？</p>
+<p>CAP 理论已经提出了 13 年，也许可以做些改变。</p>
+<p>仔细想想，分区是百分之百出现的吗？如果不出现分区，那么就能够同时满足 CAP。如果出现了分区，可以根据策略进行调整。比如 C 不必使用那么强的一致性，可以先将数据存起来，稍后再更新，实现所谓的 “最终一致性”。</p>
+<p>这个思路又是一个庞大的问题，同时也引出了第二个理论 Base 理论</p>
+<p>我们说，CAP 不可能同时满足，而分区容错是对于分布式系统而言，是必须的。最后，我们说，如果系统能够同时实现 CAP 是再好不过的了，所以出现了 BASE 理论。</p>
+<p>什么是 Base 理论
+BASE：全称：Basically Available(基本可用)，Soft state（软状态）,和 Eventually consistent（最终一致性）三个短语的缩写，来自 ebay 的架构师提出。</p>
+<p>Base 理论是对 CAP 中一致性和可用性权衡的结果，其来源于对大型互联网分布式实践的总结，是基于 CAP 定理逐步演化而来的。其核心思想是：</p>
+<p>既是无法做到强一致性（Strong consistency），但每个应用都可以根据自身的业务特点，采用适当的方式来使系统达到最终一致性（Eventual consistency）。</p>
+<p>1、Basically Available(基本可用)
+什么是基本可用呢？假设系统，出现了不可预知的故障，但还是能用，相比较正常的系统而言：</p>
+<p>1、响应时间上的损失：正常情况下的搜索引擎 0.5 秒即返回给用户结果，而基本可用的搜索引擎可以在 1 秒作用返回结果。</p>
+<p>2、功能上的损失：在一个电商网站上，正常情况下，用户可以顺利完成每一笔订单，但是到了大促期间，为了保护购物系统的稳定性，部分消费者可能会被引导到一个降级页面。</p>
+<p>2、Soft state（软状态）
+什么是软状态呢？相对于原子性而言，要求多个节点的数据副本都是一致的，这是一种 “硬状态”。</p>
+<p>软状态指的是：允许系统中的数据存在中间状态，并认为该状态不影响系统的整体可用性，即允许系统在多个不同节点的数据副本存在数据延时。</p>
+<p>3、Eventually consistent（最终一致性）
+这个比较好理解了哈。</p>
+<p>上面说软状态，然后不可能一直是软状态，必须有个时间期限。在期限过后，应当保证所有副本保持数据一致性。从而达到数据的最终一致性。这个时间期限取决于网络延时，系统负载，数据复制方案设计等等因素。</p>
+<p>稍微官方一点的说法就是：</p>
+<p>系统能够保证在没有其他新的更新操作的情况下，数据最终一定能够达到一致的状态，因此所有客户端对系统的数据访问最终都能够获取到最新的值。</p>
+<p>而在实际工程实践中，最终一致性分为 5 种：</p>
+<p>1、因果一致性（Causal consistency）</p>
+<p>指的是：如果节点 A 在更新完某个数据后通知了节点 B，那么节点 B 之后对该数据的访问和修改都是基于 A 更新后的值。于此同时，和节点 A 无因果关系的节点 C 的数据访问则没有这样的限制。</p>
+<p>2、读己之所写（Read your writes）</p>
+<p>这种就很简单了，节点 A 更新一个数据后，它自身总是能访问到自身更新过的最新值，而不会看到旧值。其实也算一种因果一致性。</p>
+<p>3、会话一致性（Session consistency）</p>
+<p>会话一致性将对系统数据的访问过程框定在了一个会话当中：系统能保证在同一个有效的会话中实现 “读己之所写” 的一致性，也就是说，执行更新操作之后，客户端能够在同一个会话中始终读取到该数据项的最新值。</p>
+<p>4、单调读一致性（Monotonic read consistency）</p>
+<p>单调读一致性是指如果一个节点从系统中读取出一个数据项的某个值后，那么系统对于该节点后续的任何数据访问都不应该返回更旧的值。</p>
+<p>5、单调写一致性（Monotonic write consistency）</p>
+<p>指一个系统要能够保证来自同一个节点的写操作被顺序的执行。</p>
+<p>然而，在实际的实践中，这 5 种系统往往会结合使用，以构建一个具有最终一致性的分布式系统。实际上，不只是分布式系统使用最终一致性，关系型数据库在某个功能上，也是使用最终一致性的，比如备份，数据库的复制过程是需要时间的，这个复制过程中，业务读取到的值就是旧的。当然，最终还是达成了数据一致性。这也算是一个最终一致性的经典案例。</p>
+<p>总结
+我们说，CAP 不可能同时满足，而分区容错是对于分布式系统而言，是必须的。最后，我们说，如果系统能够同时实现 CAP 是再好不过的了，所以出现了 BASE 理论，总的来说，BASE 理论面向的是大型高可用可扩展的分布式系统，和传统事务的 ACID 是相反的，它完全不同于 ACID 的强一致性模型，而是通过牺牲强一致性来获得可用性，并允许数据在一段时间是不一致的。</p>
+<p>整编：搜云库技术团队</p>
+<p>原文出处：</p>
+<p>[1]：http://t.cn/ECwS0zz</p>
+<p>[2]：http://t.cn/ECwSntj</p>
+<p>版权申明：内容来源网络，版权归原创者所有。除非无法确认，我们都会标明作者及出处，如有侵权烦请告知我们，我们会立即删除并表示歉意。谢谢！</p>
+<p>搜云库技术团队，欢迎广大技术人员投稿
+投稿邮箱： admin@souyunku.com
+如果对本文的内容有疑问，请在文章留言区留言，谢谢。</p>
+<p>限时：免费进星球
+限时免费加入，已经有1400 +人了</p>
+<p>星球介绍：技术，资讯，资源，分享，职场，面试，答疑</p>
+<p>星球是为了帮助公众号和博客粉丝更好更近的沟通，这里会有最新的技术文章分享，技术答疑，职场面试等相关问题交流沟通。</p>
+
+            </div>
+          </article>
+        </div>
+    
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="/Users/michael/Documents/Gridea/output/post/zxcv/index.html">
+              <h3 class="post-title">
+                zxcv
+              </h3>
+            </a>
+          </div>  
+        
+
+        
+    
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+</div>
+
+<script>
+  hljs.initHighlightingOnLoad()
+</script>
+
+      </div>
+    </div>
+  </body>
+</html>
